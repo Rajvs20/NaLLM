@@ -1,0 +1,18 @@
+services:
+  localai:
+    image: localai/localai:v2.16.0-cublas-cuda11-core
+    command: mistral-openorca
+    environment:
+      - SERVER.DEFAULT_LISTEN_ADDRESS=0.0.0.0
+    ports:
+      - "8000:8080"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    tty: true
+
+networks:
+  default:
+    driver: bridge
